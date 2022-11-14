@@ -98,7 +98,7 @@ int parse_config(std::string &app_cfg, std::vector<UdpContext *> &net_contexts,
             PSP_ERROR("Operator must register at least one net worker.");
             exit(ENODEV);
         }
-
+        
         if (config["schedules"].IsDefined()) {
             YAML::Node cfg_schedules = config["schedules"];
             for (size_t n = 0; n < n_net_workers; ++n) {

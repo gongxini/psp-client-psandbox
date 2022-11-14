@@ -101,7 +101,8 @@ class Schedule {
             requests.push_back(cr);
             PSP_TRUE(EINVAL, requests[rid] == cr);
             cr->id = rid;
-            cr->type = static_cast<ReqType>(req_offset + cmd_idx);
+//            cr->type = static_cast<ReqType>(req_offset + cmd_idx);
+            cr->type = ReqType::UPDATE;
             cr->mbuf = nullptr; // filled at send time
             switch (ptype) {
                 case pkt_type::PSP_MB:
