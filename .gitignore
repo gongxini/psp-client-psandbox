@@ -37,5 +37,6 @@ CTestTestfile.cmake
 # Python3 venv
 /scripts/*/venv/
 *pickle
-
+.idea/
+cmake-build-debug/
 *pdf
