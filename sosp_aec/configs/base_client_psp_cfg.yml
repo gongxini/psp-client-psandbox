@@ -22,7 +22,9 @@ schedules:
   - 1000
   cmd_ratios:
   - 1.0
-  duration: 10
+  duration: 1
   ptype: PSP_MB
-  rate: 1000000
   uniform: false
+  rtype: MySQL_UPDATE
+
+

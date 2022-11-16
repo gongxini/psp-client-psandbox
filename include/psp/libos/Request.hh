@@ -24,11 +24,11 @@ enum class ReqType {
     GET,
     SCAN,
     LAST,
-  UPDATE,
-  READ_UPDATE,
-  READ_LOCK,
-  TRANSACTION,
-  UPDATE1
+    MySQL_UPDATE,
+    MySQL_READ_UPDATE,
+    MySQL_READ_LOCK,
+    MySQL_TRANSACTION,
+    MySQL_UPDATE1,
 };
 
 [[gnu::unused]] static const char *req_type_str[] = {
@@ -43,7 +43,12 @@ enum class ReqType {
     "OrderStatus",
     "StockLevel",
     "GET",
-    "SCAN"
+    "SCAN",
+    "MySQL_UPDATE",
+    "MySQL_READ_UPDATE",
+    "MySQL_READ_LOCK",
+    "MySQL_TRANSACTION",
+    "MySQL_UPDATE1"
 };
 
 [[gnu::unused]] static enum ReqType str_to_type(std::string const &type) {
@@ -69,6 +74,16 @@ enum class ReqType {
         return ReqType::GET;
     } else if (type == "SCAN") {
         return ReqType::SCAN;
+    } else if (type == "MySQL_UPDATE") {
+      return ReqType::MySQL_UPDATE;
+    }  else if (type == "MySQL_READ_UPDATE") {
+      return ReqType::MySQL_READ_UPDATE;
+    }  else if (type == "MySQL_READ_LOCK") {
+      return ReqType::MySQL_READ_LOCK;
+    }  else if (type == "MySQL_TRANSACTION") {
+      return ReqType::MySQL_TRANSACTION;
+    }  else if (type == "MySQL_UPDATE1") {
+      return ReqType::MySQL_UPDATE1;
     }
     return ReqType::UNKNOWN;
 }
