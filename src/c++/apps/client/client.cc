@@ -115,7 +115,7 @@ int main(int argc, char *argv[]) {
     std::vector<uint32_t> cpus;
     PSP_OK(parse_config(
         cfg_file, client_net_contexts, cpus, &net_mempool, remote_ports, remote_hosts,
-        client_workers, max_concurrency
+        client_workers, max_concurrency,type_id
     ));
 
     // Fall back on CLI arguments to build a single schedule

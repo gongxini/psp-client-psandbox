@@ -23,11 +23,11 @@ enum class ReqType {
     STOCK_LEVEL,
     GET,
     SCAN,
-    LAST,
   //
     MySQL_UPDATE,
   MySQL_READ,
   MySQL_INSERT,
+  LAST,
 };
 
 [[gnu::unused]] static const char *req_type_str[] = {
@@ -44,10 +44,8 @@ enum class ReqType {
     "GET",
     "SCAN",
     "MySQL_UPDATE",
-    "MySQL_READ_UPDATE",
-    "MySQL_READ_LOCK",
-    "MySQL_TRANSACTION",
-    "MySQL_UPDATE1"
+    "MySQL_READ",
+    "MySQL_INSERT",
 };
 
 [[gnu::unused]] static enum ReqType str_to_type(std::string const &type) {
