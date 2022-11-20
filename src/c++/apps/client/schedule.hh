@@ -46,6 +46,7 @@ class Schedule {
     public: uint32_t attempts = 0;
     public: uint32_t ev_count = 0;
     public: uint32_t n_skipped = 0;
+    public:  int type_id = 0;
 
     public: Schedule (uint32_t i) : schedule_id(i) {}
 
@@ -66,8 +67,8 @@ class Schedule {
         tp start_time = take_time();
         uint64_t time = 0;
         uint64_t end_time = duration.count() * 1e9;
-        int type_counts[static_cast<int>(ReqType::LAST)];
-        for (int i = 0; i < static_cast<int>(ReqType::LAST); ++i) {
+        int type_counts[static_cast<int>(ReqType::MySQL_INSERT)];
+        for (int i = 0; i < static_cast<int>(ReqType::MySQL_INSERT); ++i) {
             type_counts[i] = 0;
         }
         while (time <= end_time) {
@@ -102,12 +103,14 @@ class Schedule {
             PSP_TRUE(EINVAL, requests[rid] == cr);
             cr->id = rid;
             cr->type = static_cast<ReqType>(req_offset + cmd_idx);
-//            cr->type = ReqType::UPDATE;
             cr->mbuf = nullptr; // filled at send time
             switch (ptype) {
                 case pkt_type::PSP_MB:
                 case pkt_type::IX:
                     cr->run_ns = reqs_us[cmd_idx];
+                    if(req_offset > 12) {
+                      cr->run_ns = type_id;
+                    }
                     break;
                 default:
                     cr->run_ns = 0;
@@ -115,7 +118,7 @@ class Schedule {
             cr->schedule_id = schedule_id;
         }
         PSP_INFO("Created " << n_requests << " requests spanning " << duration << ":");
-        for (int i = 0; i < static_cast<int>(ReqType::LAST); ++i) {
+        for (int i = 0; i < static_cast<int>(ReqType::MySQL_INSERT); ++i) {
             if (type_counts[i] > 0) {
                 PSP_INFO(req_type_str[i] << ": " << type_counts[i]);
             }

@@ -24,11 +24,10 @@ enum class ReqType {
     GET,
     SCAN,
     LAST,
+  //
     MySQL_UPDATE,
-    MySQL_READ_UPDATE,
-    MySQL_READ_LOCK,
-    MySQL_TRANSACTION,
-    MySQL_UPDATE1,
+  MySQL_READ,
+  MySQL_INSERT,
 };
 
 [[gnu::unused]] static const char *req_type_str[] = {

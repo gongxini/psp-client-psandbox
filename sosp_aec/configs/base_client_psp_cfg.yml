@@ -25,6 +25,7 @@ schedules:
   duration: 1
   ptype: PSP_MB
   uniform: false
-  rtype: MySQL_UPDATE
+  rtype: MySQL_READ
+  case: 1
 
 

@@ -60,6 +60,7 @@ int main(int argc, char *argv[]) {
     uint64_t duration;
     double rate;
     int max_concurrency;
+    int type_id;
     std::string label, cfg_file;
     std::vector<uint16_t> remote_ports;
     std::vector<std::string> remote_hosts;
@@ -95,7 +96,8 @@ int main(int argc, char *argv[]) {
         ("out,o", po::value<std::string>(&output_filename), "path to output file (defaults to log directory)")
         ("outdir,o", po::value<std::string>(&output_dirname), "name of output dir")
         ("collect-logs", po::value<unsigned int>(&collect_logs), "Activate log collection")
-        ("sample,S", po::value<int>(&downsample), "-1: histogram, 0: full timeseries, >0: timeseries downsampled to this number");
+        ("sample,S", po::value<int>(&downsample), "-1: histogram, 0: full timeseries, >0: timeseries downsampled to this number")
+        ("case,c", po::value<int>(&type_id), "Type of sql query");
 
     if (parse_args(argc, argv, desc)) {
         PSP_ERROR("Error parsing arguments");
@@ -130,6 +132,7 @@ int main(int argc, char *argv[]) {
             sched->cmd_ratios = cmd_ratios;
             sched->rate = rate / client_net_contexts.size(); //Spread load across workers
             sched->duration = boost::chrono::seconds(duration);
+            sched->type_id = type_id;
             sched->max_duration = boost::chrono::seconds(duration + 5);
             sched->uniform = uniform;
             if (ix_reqs) {
