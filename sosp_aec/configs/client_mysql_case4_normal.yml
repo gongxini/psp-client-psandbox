@@ -19,13 +19,12 @@ network:
   remote_mac: '42:42:42:42:42:01'
 schedules:
   - cmd_mean_ns:
-      - 1000000000
-    cmd_ratios:
-      - 1.0
-    duration: 10
-    ptype: PSP_MB
-    uniform: false
-    rtype: MySQL_READ
-    rate: 1
-
-
+  - 1000000
+  cmd_ratios:
+  - 1.0
+  duration: 10
+  ptype: PSP_MB
+  uniform: false
+  rtype: MySQL_UPDATE
+  case: 0
+  rate: 100

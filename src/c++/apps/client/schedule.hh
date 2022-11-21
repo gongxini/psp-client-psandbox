@@ -102,13 +102,20 @@ class Schedule {
             requests.push_back(cr);
             PSP_TRUE(EINVAL, requests[rid] == cr);
             cr->id = rid;
-            cr->type = static_cast<ReqType>(req_offset + cmd_idx);
+            if (type_ids[cmd_idx] == -1 && req_offset == 12) {
+              cr->type = static_cast<ReqType>(req_offset + cmd_idx + 1);
+            } else {
+              cr->type = static_cast<ReqType>(req_offset + cmd_idx );
+            }
+
             cr->mbuf = nullptr; // filled at send time
             switch (ptype) {
                 case pkt_type::PSP_MB:
                 case pkt_type::IX:
                     cr->run_ns = reqs_us[cmd_idx];
-                    if (req_offset > 11) {
+                    if (type_ids[cmd_idx] == -1 && req_offset == 12) {
+                      cr->run_ns = 4;
+                    } else if (req_offset > 11) {
                       cr->run_ns = type_ids[cmd_idx];
                     }
                     break;
@@ -120,7 +127,7 @@ class Schedule {
         PSP_INFO("Created " << n_requests << " requests spanning " << duration << ":");
         for (int i = 0; i < static_cast<int>(ReqType::LAST); ++i) {
             if (type_counts[i] > 0) {
-                PSP_INFO(req_type_str[i] << ": " << type_counts[i]);
+                PSP_INFO(req_type_str[i] << ": " << type_counts[i] );
             }
         }
         return 0;
