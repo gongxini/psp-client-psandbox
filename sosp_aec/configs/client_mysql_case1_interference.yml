@@ -25,4 +25,4 @@ schedules:
     uniform: false
     rtype: [MySQL_READ, MySQL_UPDATE]
     case: [0, 0]
-    rate: 100
+    rate: 1000

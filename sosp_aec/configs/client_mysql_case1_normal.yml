@@ -28,4 +28,4 @@ schedules:
     rtype: MySQL_UPDATE
     case:
     - 0
-    rate: 100
+    rate: 1000
