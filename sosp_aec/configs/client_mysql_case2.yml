@@ -26,5 +26,6 @@ schedules:
     ptype: PSP_MB
     uniform: false
     rtype: MySQL_INSERT
-    case: 0
-    rate: 10000
+    case: 
+      - 0
+    rate: 300
