@@ -38,7 +38,7 @@ sudo numactl -N0 -m0 ${AE_DIR}/Persephone/build/src/c++/apps/app/psp-app --cfg $
 On one client:
 ```bash
 ${AE_DIR}/Persephone/sosp_aec/base_start.sh client
-sudo numactl -N0 -m0 ${AE_DIR}/client/build/src/c++/apps//client/client --config-path ${AE_DIR}/Persephone/sosp_aec/configs/base_client_psp_cfg.yml --label test --ip 192.168.10.10 --port 6789 --max-concurrency -1 --sample -1 --collect-logs 1 --outdir client0
+sudo numactl -N0 -m0 ${AE_DIR}/client/build/src/c++/apps//client/client --config-path ${AE_DIR}/Persephone/sosp_aec/configs/client_mysql_case1_interference.yml --label test --ip 192.168.10.10 --port 6789 --max-concurrency -1 --sample -1 --collect-logs 1 --outdir client0
 ```
 
 If you see an output similar to the one bellow, the system works as expected. You can ignore the Fdir error.

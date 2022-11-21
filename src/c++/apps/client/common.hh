@@ -55,7 +55,7 @@ int parse_config(std::string &app_cfg, std::vector<UdpContext *> &net_contexts,
                  std::vector<uint32_t> &cpus, struct rte_mempool **net_mempool,
                  std::vector<uint16_t> remote_ports, std::vector<std::string> &remote_ips,
                  std::vector<std::shared_ptr<T>> &client_workers,
-                 int max_concurrency, int type_id) {
+                 int max_concurrency) {
     try {
         std::vector<uint32_t> cpus_v;
         YAML::Node config = YAML::LoadFile(app_cfg);
@@ -112,11 +112,12 @@ int parse_config(std::string &app_cfg, std::vector<UdpContext *> &net_contexts,
                     sched->max_duration = boost::chrono::seconds(cfg_schedules[i]["duration"].as<uint64_t>() + 5);
                     sched->uniform = cfg_schedules[i]["uniform"].as<bool>();
                     sched->ptype = str_to_ptype(cfg_schedules[i]["ptype"].as<std::string>());
-                    sched->type_id = type_id;
+
                     if (sched->ptype == pkt_type::RAW) {
                         PSP_TRUE(EINVAL, cfg_schedules[i]["pkt_size"].IsDefined());
                         sched->pkt_size = cfg_schedules[i]["pkt_size"].as<uint64_t>();
                     }
+                    sched->type_ids = cfg_schedules[i]["case"].as<std::vector<int>>();
                     sched->cmd_ratios = cfg_schedules[i]["cmd_ratios"].as<std::vector<double>>();
                     if (cfg_schedules[i]["cmd_lists"].IsDefined()) {
                         auto &cmd_lists = cfg_schedules[i]["cmd_lists"].as<std::vector<std::string>>();

@@ -46,7 +46,7 @@ class Schedule {
     public: uint32_t attempts = 0;
     public: uint32_t ev_count = 0;
     public: uint32_t n_skipped = 0;
-    public:  int type_id = 0;
+    public: std::vector<int> type_ids;
 
     public: Schedule (uint32_t i) : schedule_id(i) {}
 
@@ -108,8 +108,8 @@ class Schedule {
                 case pkt_type::PSP_MB:
                 case pkt_type::IX:
                     cr->run_ns = reqs_us[cmd_idx];
-                    if(req_offset > 12) {
-                      cr->run_ns = type_id;
+                    if (req_offset > 11) {
+                      cr->run_ns = type_ids[cmd_idx];
                     }
                     break;
                 default:
