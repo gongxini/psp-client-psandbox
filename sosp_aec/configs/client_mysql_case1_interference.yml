@@ -26,3 +26,4 @@ schedules:
     rtype: [MySQL_READ, MySQL_UPDATE]
     case: [0, 0]
     rate: 1000
+

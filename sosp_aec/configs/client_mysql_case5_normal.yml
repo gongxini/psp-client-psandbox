@@ -26,5 +26,6 @@ schedules:
     ptype: PSP_MB
     uniform: false
     rtype: MySQL_UPDATE
-    case: 1
-    rate: 2000
+    case: 
+    - 1
+    rate: 1000
