@@ -20,10 +20,10 @@ network:
 schedules:
   - cmd_mean_ns: [1000, 100000]
     cmd_ratios: [0.98, 0.02]
-    duration: 10
+    duration: 60
     ptype: PSP_MB
     uniform: false
     rtype: [PostgreSQL_READ, PostgreSQL_UPDATE]
     case: [1, 2]
-    rate: 1000
+    rate: 100
 

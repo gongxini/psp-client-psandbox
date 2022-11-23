@@ -22,11 +22,11 @@ schedules:
     - 1000
     cmd_ratios:
     - 1
-    duration: 10
+    duration: 60
     ptype: PSP_MB
     uniform: false
     rtype: PostgreSQL_READ
     case:
     - 0
-    rate: 1000
+    rate: 5000
 

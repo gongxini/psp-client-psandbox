@@ -119,7 +119,7 @@ class Schedule {
                         cr->run_ns = 4;
                       } else if (type_ids[cmd_idx] == -1 && static_cast<int>(cr->type) == 16) {
                         cr->type = ReqType::PostgreSQL_INSERT;
-                        cr->run_ns = 2;
+                        cr->run_ns = 1;
                       }
                     }
                     break;
