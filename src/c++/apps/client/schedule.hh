@@ -113,10 +113,14 @@ class Schedule {
                 case pkt_type::PSP_MB:
                 case pkt_type::IX:
                     cr->run_ns = reqs_us[cmd_idx];
-                    if (type_ids[cmd_idx] == -1 && req_offset == 12) {
-                      cr->run_ns = 4;
-                    } else if (req_offset > 11) {
+                     if (req_offset > 11) {
                       cr->run_ns = type_ids[cmd_idx];
+                      if (type_ids[cmd_idx] == -1 && static_cast<int>(cr->type) == 12) {
+                        cr->run_ns = 4;
+                      } else if (type_ids[cmd_idx] == -1 && static_cast<int>(cr->type) == 16) {
+                        cr->type = ReqType::PostgreSQL_INSERT;
+                        cr->run_ns = 2;
+                      }
                     }
                     break;
                 default:
