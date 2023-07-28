@@ -1,0 +1,29 @@
+cpus:
+  - 2
+log_dir: /tmpfs/experiments/
+net_workers:
+  - ip: 192.168.10.11
+    port: 6789
+network:
+  device_id: 0
+  eal_init:
+    - -n
+    - '2'
+    - -l
+    - 0, 2
+    - --file-prefix
+    - maxdml
+    - -w
+    - '0000:18:00.1'
+  mac: '42:42:42:42:42:02'
+  remote_mac: '42:42:42:42:42:01'
+schedules:
+  - cmd_mean_ns: [1000, 100000]
+    cmd_ratios: [0.9, 0.1]
+    duration: 10
+    ptype: PSP_MB
+    uniform: false
+    rtype: [Apache_REQUEST, Apache_REQUEST]
+    case: [0, 0]
+    rate: 1000
+

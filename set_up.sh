@@ -7,3 +7,4 @@ make -j 4 -C ${PSP_DIR}/submodules/rocksdb static_lib
 mkdir -p build
 cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release -DDPDK_MELLANOX_SUPPORT=OFF 
+make -j20
